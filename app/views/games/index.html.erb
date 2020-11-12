@@ -3,9 +3,10 @@
   <%= link_to game_path(game.id) do %>
     <%= attachment_image_tag game, :image %>
   <% end %>
-  <p>投稿ユーザー画像：<%= image_tag('sample-author1.jpg') %></p>
+  <p>投稿ユーザー画像：</p>
   <p>タイトル：<%= game.game_title %></p>
   <p>感想：<%= game.impressions %></p>
   <p>ユーザーネーム：<%= game.user.name %></p>
+  <p><%= link_to "#{game.post_comments.count} コメント", game_path(game.id) %></p> <!-- コメント件数の表示 -->
 </div>
 <% end %>

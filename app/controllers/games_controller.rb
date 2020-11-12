@@ -12,11 +12,12 @@ class GamesController < ApplicationController
   end
 
   def index
-    @game = Game.all
+    @games = Game.all
   end
 
   def show
     @game = Game.find(params[:id])
+    @post_comment = PostComment.new # コメント投稿用のインスタンス変数
   end
 
   def destroy
