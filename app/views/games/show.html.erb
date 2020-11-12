@@ -1,0 +1,10 @@
+<div class="game-body">
+  <%= attachment_image_tag @game, :image %>
+  <p>タイトル：<%= @game.game_title %></p>
+  <p>感想：<%= @game.impressions %></p>
+  <p>ユーザーネーム：<%= @game.user.name %></p>
+  <p>投稿日時：<%= @game.created_at.strftime('%Y/%m/%d') %></p> <!-- created_atカラム：ActiceRecordが自動的にデータを作成した日時を記録する -->
+  <% if @game.user == current_user %>
+    <%= link_to "削除", game_path(@game), method: :delete %>
+  <% end 
+</div>
