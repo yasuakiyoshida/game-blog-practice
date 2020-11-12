@@ -1,0 +1,9 @@
+<% @games.each do |game| %>
+<div>
+  <%= attachment_image_tag game, :image %>
+  <p>投稿ユーザー画像：<%= image_tag('sample-author1.jpg') %></p>
+  <p>タイトル：<%= game.game_title %></p>
+  <p>感想：<%= game.impressions %></p>
+  <p>ユーザーネーム：<%= game.user.name %></p>
+</div>
+<% end %>
