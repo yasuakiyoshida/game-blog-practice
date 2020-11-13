@@ -15,6 +15,11 @@
   <p></p>
   <%= post_comment.user.name %>
   <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+  <% if post_comment.user == current_user %>
+  <div class="comment-delete">
+    <%= link_to "削除", game_post_comment_path(post_comment.game, post_comment), method: :delete %> <!-- post_commentに結びついたgameとpost_commentの2つを用意 -->
+  </div>
+  <% end %>
 <% end %>
 </div>
 <div class="new-comment">

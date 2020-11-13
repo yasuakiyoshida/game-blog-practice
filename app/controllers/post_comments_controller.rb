@@ -11,6 +11,8 @@ class PostCommentsController < ApplicationController
   end
   
   def destroy
+    PostComment.find_by(id: params[:id], game_id: params[:game_id]).destroy # パラメータ(id,game_id)で指定されたコメントと投稿を検索して削除(URLにidが2つ)
+    redirect_to game_path(params[:game_id])
   end
   
   private
