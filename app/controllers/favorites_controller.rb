@@ -4,7 +4,7 @@ class FavoritesController < ApplicationController
     game = Game.find(params[:game_id]) # パラメータ(game_id)で指定された投稿(gameテーブル)を検索して、変数に格納
     favorite = current_user.favorites.new(game_id: game.id) # favorite = Favorite.new(game_id: game.id) \ current_user_id = current_user.idと同じ
     # favorite = Favorite.new(game_id: game.id) # 上で取得した投稿IDをgame_idカラムに格納し、favoriteインスタンスに渡す
-    # current_user_id = current_user.id # 『いいね』したユーザー（ログインユーザー）のIDを
+    # current_user_id = current_user.id # 『いいね』したユーザー（ログインユーザー）のIDを取得
     favorite.save
     redirect_to game_path(game) # 投稿詳細画面にリダイレクト
   end
