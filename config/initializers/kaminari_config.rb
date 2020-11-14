@@ -11,4 +11,5 @@ Kaminari.configure do |config|
   # config.param_name = :page
   # config.max_pages = nil
   # config.params_on_first_page = false
+  config.default_per_page = 10 # 1ページの表示件数をデフォルトの25件から10件に変更
 end

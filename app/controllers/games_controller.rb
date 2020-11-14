@@ -12,9 +12,9 @@ class GamesController < ApplicationController
   end
 
   def index
-    @games = Game.all
+    @games = Game.page(params[:page]).reverse_order # Kaminariのpageメソッドで決められた数のデータだけを取得する、.reverse_orderメソッド(現在のソート順を逆にする)で新着順に取得
   end
-
+  
   def show
     @game = Game.find(params[:id])
     @post_comment = PostComment.new # コメント投稿用のインスタンス変数

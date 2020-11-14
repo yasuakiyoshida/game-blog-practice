@@ -10,3 +10,4 @@
   <p><%= link_to "#{game.post_comments.count} コメント", game_path(game.id) %></p> <!-- コメント件数の表示 -->
 </div>
 <% end %>
+<%= paginate @games %>
