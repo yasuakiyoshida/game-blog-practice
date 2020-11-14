@@ -1,6 +1,9 @@
 <div class="profile-container">
   <h3 class="profile-name"><%= @user.name %></h3>
   <!-- ユーザー画像 -->
+  <% if @user.id == current_user.id %>
+    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+  <% end %>
 </div>
 
 <% @games.each do |game| %>
