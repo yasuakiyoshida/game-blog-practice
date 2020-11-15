@@ -16,3 +16,18 @@
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.jumbotron {
+  width: 100%;
+  background-image: url("video-controller-336657_960_720.webp");
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 0px; // 画像下の隙間を無くす
+  height: 100vh; // 画面の高さに対して
+}
