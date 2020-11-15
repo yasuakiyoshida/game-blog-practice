@@ -23,6 +23,7 @@
   box-sizing: border-box;
 }
 
+// top画面の画像
 .jumbotron {
   width: 100%;
   background-image: url("video-controller-336657_960_720.webp");
@@ -30,4 +31,15 @@
   background-position: center;
   margin-bottom: 0px; // 画像下の隙間を無くす
   height: 100vh; // 画面の高さに対して
+}
+
+// フッターを下に固定
+body,
+main {
+  display: flex;
+  flex-direction: column; // アイテムが縦に積み重なるように配置
+  height: 100vh; // コンテンツ量が画面サイズより大きい場合はmin-heigthで指定すること
+}
+#footer{
+  margin-top: auto;
 }
