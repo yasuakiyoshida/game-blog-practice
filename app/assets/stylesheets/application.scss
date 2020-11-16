@@ -33,6 +33,12 @@
   height: 100vh; // 画面の高さに対して
 }
 
+// ログイン画面の背景
+#signin-top {
+  background-color: rgba(255, 255, 255, 0.2);
+  background-blend-mode: lighten; // 少し明るめ
+}
+
 // フッターを下に固定
 body,
 main {
@@ -42,4 +48,9 @@ main {
 }
 #footer{
   margin-top: auto;
+}
+
+// フォームのplaceholderの文字色
+.form-control::placeholder{
+  color: #eee;
 }
