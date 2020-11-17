@@ -30,13 +30,19 @@
   background-size: cover;
   background-position: center;
   margin-bottom: 0px; // 画像下の隙間を無くす
-  height: 100vh; // 画面の高さに対して
+  min-height: 100vh; // 画面の高さに対して
 }
 
 // ログイン画面の背景
-#signin-top {
+#jumbotron-form {
   background-color: rgba(255, 255, 255, 0.2);
   background-blend-mode: lighten; // 少し明るめ
+}
+
+#index-top {
+  width: 100%;
+  margin-bottom: 0px; // 画像下の隙間を無くす
+  min-height: 100vh; // 画面の高さに対して
 }
 
 // フッターを下に固定
@@ -44,7 +50,7 @@ body,
 main {
   display: flex;
   flex-direction: column; // アイテムが縦に積み重なるように配置
-  height: 100vh; // コンテンツ量が画面サイズより大きい場合はmin-heigthで指定すること
+  min-height: 100vh; // コンテンツ量が画面サイズより大きい場合はmin-heigthで指定すること
 }
 #footer{
   margin-top: auto;
