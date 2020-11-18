@@ -16,16 +16,16 @@
                   <%= game.user.name %></p>
                 </div>
                 <div class="col-10">
-                  <p class="text-left p-3 shadow-lg"><%= game.impressions.truncate(100, omission: '...') %></p><!-- 100文字を超過したら...を表示する
+                  <p class="text-left p-3 shadow-lg"><%= game.impressions.truncate(100, omission: '...') %></p><!-- 100文字を超過したら...を表示する -->
                 </div>
               </div>
             </div>
             <p><%= link_to "#{game.post_comments.count} コメント", game_path(game.id) %></p> <!-- コメント件数の表示 -->
           </section>
           <% end %>
-          <div><%= paginate @games %></div>
         </div>
       </div>
     </div>
   </div>
+  <div><%= paginate @games %></div>
 </div>

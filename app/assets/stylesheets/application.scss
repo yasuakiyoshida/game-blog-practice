@@ -55,3 +55,31 @@ main {
 .form-control::placeholder{
   color: #eee;
 }
+
+// ページング
+.pagination {
+  border: 1px solid #ccc;
+  border-radius: 0; // 角の丸みを
+  width: 100%;
+  display: flex;
+  justify-content: left; // 左寄せ
+  background: #fff;
+}
+.first, // 一番前のページに移動
+.last, // 一番後ろのページに移動
+.next, // 次のページに進む
+.prev, // previous：前のページに戻る
+.page, // ページ番号
+.current { // 閲覧しているページの番号
+  border: solid #ccc;
+  border-width: 0 1px 0 0;
+  padding: 1em 20px; // 1文字分
+  text-align: center;
+  font-size: 16px;
+}
+
+.current {
+  border: none;
+  background: #000;
+  color: #fff;
+}
