@@ -1,44 +1,73 @@
-<div class="game-body">
-  <%= attachment_image_tag @game, :image %>
-  <p>タイトル：<%= @game.game_title %></p>
-  <p>感想：<%= @game.impressions %></p>
-  <p>ユーザーネーム：<%= @game.user.name %></p>
-  <p>投稿日時：<%= @game.created_at.strftime('%Y/%m/%d') %></p> <!-- created_atカラム：ActiceRecordが自動的にデータを作成した日時を記録する -->
-  <% if @game.user == current_user %>
-    <%= link_to "削除", game_path(@game), method: :delete %>
-  <% end %>
-  <!-- 『いいね』機能 -->
-  <% if @game.favorited_by?(current_user) %> <!-- 投稿に付けられた『いいね』に自分（ログインユーザー）が含まれているか -->
-    <p> <!-- 含まれている場合 -->
-      <%= link_to game_favorites_path(@game), method: :delete do %> <!-- 『いいね』削除,ルーティングにgame_idが必要だから@game -->
-        ♥<%= @game.favorites.count %> いいね
-      <% end %>
-    </p>
-    <% else %>
-    <p> <!-- 含まれていない場合 -->
-      <%= link_to game_favorites_path(@game), method: :post do %> <!-- 『いいね』追加 -->
-        ♡<%= @game.favorites.count %> いいね
-      <% end %>
-    </p>
-  <% end %>
-</div>
-
-<div class="comments">
-<p>コメント件数：<%= @game.post_comments.count %></p>
-<% @game.post_comments.each do |post_comment| %>
-  <p><%= attachment_image_tag post_comment.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></p> <!-- 画像を保持しているのはpost_commentモデルに紐づけられたuserモデル -->
-  <%= post_comment.user.name %>
-  <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
-  <% if post_comment.user == current_user %>
-  <div class="comment-delete">
-    <%= link_to "削除", game_post_comment_path(post_comment.game, post_comment), method: :delete %> <!-- post_commentに結びついたgameとpost_commentの2つを用意 -->
+<div class="jumbotron jumbotron-fluid text-center", id="jumbotron-form">
+  <div class="container">
+    <div class="row no-gutters">
+      <div class="col-lg-7 shadow-lg mr-auto my-5">
+        <div class="game-body card">
+          <h4 class="bg-dark text-light py-3">ゲームタイトル：<%= @game.game_title %></h4>
+          <%= attachment_image_tag @game, :image,class: "card-img-top shadow-lg" %>
+          <div class="card-body m-3">
+            <p class="card-text">感想：<%= @game.impressions %></p>
+            <div class="row">
+              <div class="col-5 text-left">
+                <p>投稿ユーザー：<%= @game.user.name %></p>
+                <p>投稿日時：<%= @game.created_at.strftime('%Y/%m/%d') %></p> <!-- created_atカラム：ActiceRecordが自動的にデータを作成した日時を記録する -->
+              </div>
+              <div class="col-5 offset-md-2">
+                <% if @game.user == current_user %>
+                  <p class="bg-danger text-center p-1 rounded"><%= link_to "投稿を削除", game_path(@game), method: :delete, class: "text-light", style: "text-decoration: none;" %></p>
+                <% end %>
+                <!-- 『いいね』機能 -->
+                <% if @game.favorited_by?(current_user) %> <!-- 投稿に付けられた『いいね』に自分（ログインユーザー）が含まれているか -->
+                  <p> <!-- 含まれている場合 -->
+                    <%= link_to game_favorites_path(@game), method: :delete do %> <!-- 『いいね』削除,ルーティングにgame_idが必要だから@game -->
+                      ♥<%= @game.favorites.count %> いいね
+                    <% end %>
+                  </p>
+                  <% else %>
+                  <p> <!-- 含まれていない場合 -->
+                    <%= link_to game_favorites_path(@game), method: :post do %> <!-- 『いいね』追加 -->
+                      ♡<%= @game.favorites.count %> いいね
+                    <% end %>
+                  </p>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-4 offset-md-1 shadow-lg my-5 border">
+        <div class="comments">
+          <h4 class="bg-dark text-light py-3">コメント一覧</h4>
+          <p class="text-light">コメント件数：<%= @game.post_comments.count %></p>
+          <% @game.post_comments.each do |post_comment| %>
+            <div class="row m-2 p-2 border">
+              <div class="col-4">
+                <p><%= attachment_image_tag post_comment.user, :profile_image, fallback: "no_image.jpg", size: "40x40", class: "rounded-circle" %><br>
+                <%= post_comment.user.name %></p> <!-- 画像を保持しているのはpost_commentモデルに紐づけられたuserモデル -->
+                <small>
+                  <div><%= post_comment.created_at.strftime('%Y/%m/%d') %></div>
+                  <% if post_comment.user == current_user %>
+                    <div class="comment-delete">
+                      <%= link_to "削除する", game_post_comment_path(post_comment.game, post_comment), method: :delete, class: "text-danger", style: "text-decoration: none;"%> <!-- post_commentに結びついたgameとpost_commentの2つを用意 -->
+                    </div>
+                  <% end %>
+                </small>
+              </div>
+              <div class="col-8">
+                <small class="text-left"><%= post_comment.comment %></small>
+              </div>
+            </div>
+          <% end %>
+          
+          <div class="new-comment m-3">
+            <%= form_with(model:[@game, @post_comment], local: true) do |f| %>
+              <%= f.text_area :comment, rows:'5',placeholder: "コメント入力", class: "form-control mb-1" %>
+              <%= f.submit "コメントを送信する", class: "btn btn-block btn-info" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <% end %>
-<% end %>
-</div>
-<div class="new-comment">
-<%= form_with(model:[@game, @post_comment], local: true) do |f| %>
-  <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
-  <%= f.submit "送信する" %>
-<% end %>
 </div>

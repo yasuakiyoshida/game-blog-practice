@@ -10,7 +10,7 @@
               <%= f.text_field :name, autofocus: true, placeholder: "ユーザー名", class: "form-control bg-transparent text-light", id: "user_name" %>
             </div>
             
-            <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
+            <%= attachment_image_tag @user, :profile_image, fallback: "no_image.jpg", size: "60x60", class: "rounded-circle" %>
             
             <div class="form-group mt-3">
               <label for="game_image">ユーザーイメージ</label><%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
