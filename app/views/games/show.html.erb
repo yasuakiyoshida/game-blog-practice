@@ -1,7 +1,7 @@
 <div class="jumbotron jumbotron-fluid text-center", id="jumbotron-form">
   <div class="container">
     <div class="row no-gutters">
-      <div class="col-lg-7 shadow-lg mr-auto my-5">
+      <div class="col-lg-7 mr-auto my-5">
         <div class="game-body card">
           <h4 class="bg-dark text-light py-3">ゲームタイトル：<%= @game.game_title %></h4>
           <%= attachment_image_tag @game, :image,class: "card-img-top shadow-lg" %>
@@ -38,9 +38,9 @@
       
       <div class="col-lg-4 offset-md-1 shadow-lg my-5 border">
         <div class="comments">
-          <h4 class="bg-dark text-light py-3">コメント一覧</h4>
+          <h4 class="bg-dark text-light py-3">コメント：5件まで表示</h4>
           <p class="text-light">コメント件数：<%= @game.post_comments.count %></p>
-          <% @game.post_comments.each do |post_comment| %>
+          <% @post_comments.each do |post_comment| %><!-- コントローラで@game.post_commentsを@post_commentsを定義したことで、@game.post_commentsしなくてもよくなった -->
             <div class="row m-2 p-2 border">
               <div class="col-4">
                 <p><%= attachment_image_tag post_comment.user, :profile_image, fallback: "no_image.jpg", size: "40x40", class: "rounded-circle" %><br>
@@ -59,6 +59,7 @@
               </div>
             </div>
           <% end %>
+          <p><%= paginate @post_comments %></p>
           
           <div class="new-comment m-3">
             <%= form_with(model:[@game, @post_comment], local: true) do |f| %>

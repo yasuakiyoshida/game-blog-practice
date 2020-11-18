@@ -18,8 +18,9 @@ class GamesController < ApplicationController
   def show
     @game = Game.find(params[:id])
     @post_comment = PostComment.new # コメント投稿用のインスタンス変数
+    @post_comments = @game.post_comments.page(params[:page]).per(5) # コメントを全て取得=>コメントを5件取得
   end
-
+  
   def destroy
     @game = Game.find(params[:id])
     @game.destroy

@@ -1,28 +1,30 @@
-<div class="text-center pt-5", id="#index-top">
-  <div class="container">
-    <div class="row no-gutters">
-      <div class="left-contents col-lg-7">
-        <% @games.each do |game| %>
-        <section class="card mb-5">
-          <%= link_to game_path(game.id), style: "text-decoration: none;" do %>
-            <h6 class="card-title bg-dark text-light py-3">ゲームタイトル：<%= game.game_title %></h6>
-            <%= attachment_image_tag game, :image, class: "card-img-top shadow-lg" %>
-          <% end %>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-2">
-                <p><%= attachment_image_tag game.user, :profile_image, fallback: "no_image.jpg", size: "60x60", class: "rounded-circle" %></br>
-                <%= game.user.name %></p>
-              </div>
-              <div class="col-10">
-                <p class="text-left p-3 shadow-lg"><%= game.impressions %></p>
+<div class="jumbotron jumbotron-fluid">
+  <div class="text-center pt-5">
+    <div class="container">
+      <div class="row no-gutters">
+        <div class="left-contents col-lg-7">
+          <% @games.each do |game| %>
+          <section class="card mb-5">
+            <%= link_to game_path(game.id), style: "text-decoration: none;" do %>
+              <h6 class="card-title bg-dark text-light py-3">ゲームタイトル：<%= game.game_title %></h6>
+              <%= attachment_image_tag game, :image, class: "card-img-top shadow-lg" %>
+            <% end %>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-2">
+                  <p><%= attachment_image_tag game.user, :profile_image, fallback: "no_image.jpg", size: "60x60", class: "rounded-circle" %></br>
+                  <%= game.user.name %></p>
+                </div>
+                <div class="col-10">
+                  <p class="text-left p-3 shadow-lg"><%= game.impressions.truncate(100, omission: '...') %></p><!-- 100文字を超過したら...を表示する
+                </div>
               </div>
             </div>
-          </div>
-          <p><%= link_to "#{game.post_comments.count} コメント", game_path(game.id) %></p> <!-- コメント件数の表示 -->
-        </section>
-        <% end %>
-        <div><%= paginate @games %></div>
+            <p><%= link_to "#{game.post_comments.count} コメント", game_path(game.id) %></p> <!-- コメント件数の表示 -->
+          </section>
+          <% end %>
+          <div><%= paginate @games %></div>
+        </div>
       </div>
     </div>
   </div>

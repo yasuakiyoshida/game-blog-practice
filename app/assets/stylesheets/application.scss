@@ -23,12 +23,13 @@
   box-sizing: border-box;
 }
 
-// top画面の画像
+// 背景画像
 .jumbotron {
   width: 100%;
   background-image: url("video-controller-336657_960_720.webp");
   background-size: cover;
   background-position: center;
+  background-attachment: fixed; // 画面がスクロールしても背景画像を固定する
   margin-bottom: 0px; // 画像下の隙間を無くす
   min-height: 100vh; // 画面の高さに対して
 }
@@ -37,12 +38,6 @@
 #jumbotron-form {
   background-color: rgba(255, 255, 255, 0.2);
   background-blend-mode: lighten; // 少し明るめ
-}
-
-#index-top {
-  width: 100%;
-  margin-bottom: 0px; // 画像下の隙間を無くす
-  min-height: 100vh; // 画面の高さに対して
 }
 
 // フッターを下に固定
