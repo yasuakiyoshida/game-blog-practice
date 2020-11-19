@@ -1,21 +1,44 @@
-<div class="profile-container">
-  <h3 class="profile-name"><%= @user.name %></h3>
-  <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
-  <% if @user.id == current_user.id %>
-    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-  <% end %>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <div class="row no-gutters">
+      <div class="profile-container card col-lg-10 m-auto">
+        <div class="card-header bg-dark text-center">
+          <h5 class="text-light">My Page</h5>
+        </div>
+        <div class="card-body w-100 text-center">
+          <p>My image</p>
+          <div class="card-img-top">
+            <%= attachment_image_tag @user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "100x100" %>
+          </div>
+          <h6 class="card-title"><%= @user.name %></h6>
+        </div>
+        <div class="card-footer text-center">
+          <% if @user.id == current_user.id %>
+            <p class="text-light"><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+          <% end %>
+        </div>
+      </div>
+      
+      <div class="game-container col-lg-10 m-auto">
+        <div class="card">
+          <% @games.each do |game| %>
+          <div class="card-body">
+            <div class="card-img-top w-100">
+            <%= link_to game_path(game.id) do %>
+              <%= attachment_image_tag game, :image, class: "card-img-top"%>
+            <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+          <p>タイトル：<%= game.game_title %></p>
+          <p>感想：<%= game.impressions %></p>
+          <p>ユーザーネーム：<%= game.user.name %></p>
+          <p><%= link_to "#{game.post_comments.count} コメント", game_path(game.id) %></p> <!-- コメント件数の表示 -->
+        </div>
+        <% end %>
+        <%= paginate @games %>
+      </div>
+    </div>
+  </div>
 </div>
-
-<% @games.each do |game| %>
-<div>
-  <%= link_to game_path(game.id) do %>
-    <%= attachment_image_tag game, :image %>
-  <% end %>
-  <p>投稿ユーザー画像：<%= attachment_image_tag game.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></p>
-  <p>タイトル：<%= game.game_title %></p>
-  <p>感想：<%= game.impressions %></p>
-  <p>ユーザーネーム：<%= game.user.name %></p>
-  <p><%= link_to "#{game.post_comments.count} コメント", game_path(game.id) %></p> <!-- コメント件数の表示 -->
-</div>
-<% end %>
-<%= paginate @games %>

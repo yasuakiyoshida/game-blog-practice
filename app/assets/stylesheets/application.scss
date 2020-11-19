@@ -59,11 +59,11 @@ main {
 // ページング
 .pagination {
   border: 1px solid #ccc;
-  border-radius: 0; // 角の丸みを
+  border-radius: 0; // 角の丸みを消す
   width: 100%;
   display: flex;
   justify-content: left; // 左寄せ
-  background: #fff;
+  background: #f2f2f2;
 }
 .first, // 一番前のページに移動
 .last, // 一番後ろのページに移動
@@ -82,4 +82,12 @@ main {
   border: none;
   background: #000;
   color: #fff;
+}
+
+.first:hover,
+.last:hover,
+.next:hover,
+.prev:hover,
+.page:hover {
+  background: #898989;
 }
