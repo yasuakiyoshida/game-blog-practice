@@ -18,6 +18,23 @@
               <%= f.text_area :impressions, placeholder: "感想など", class: "form-control bg-transparent text-light", id: "impressions" %>
             </div>
             
+            <!-- 評価 -->
+            <div class="form-group row" id="star">
+              <%= f.label :rate,'評価 ', class:'col-md-3' %> <!-- col-form-label -->
+              <%= f.hidden_field :rate, id: :review_star %>
+            </div>
+            <!-- 評価javascript -->
+            <script>
+            $('#star').raty({ // jQuery Raty(jQueryプラグイン)
+              size     : 36, // 星のサイズ
+              starOff:  '<%= asset_path('star-off.png') %>', // オフ状態イメージのファイル名
+              starOn : '<%= asset_path('star-on.png') %>', // オン状態イメージのファイル名
+              starHalf: '<%= asset_path('star-half.png') %>', // 星半分状態イメージのファイル名
+              scoreName: 'game[rate]', // パラメータ名（gameのrateカラム）
+              half: true, // 星を半分単位で表示する
+            });
+            </script>  
+            
             <div class="actions mb-3">
               <%= f.submit "投稿する", class: "btn btn-block btn-info mt-4" %>
             </div>
