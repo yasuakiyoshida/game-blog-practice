@@ -20,6 +20,22 @@
                 </div>
               </div>
             </div>
+            <!-- 星評価 -->
+            <p>評価：<%= game.rate %>点</p>
+            <!--星評価-->
+            <div id="star-rate-<%= game.id %>"></div>
+            <script>
+            $('#star-rate-<%= game.id %>').raty({
+              size: 36,
+              starOff:  '<%= asset_path('star-off.png') %>',
+              starOn : '<%= asset_path('star-on.png') %>',
+              starHalf: '<%= asset_path('star-half.png') %>',
+              half: true,
+              readOnly: true,
+              score: <%= game.rate %>,
+            });
+            </script>
+            
             <p><%= link_to "#{game.post_comments.count} コメント", game_path(game.id) %></p> <!-- コメント件数の表示 -->
           </section>
           <% end %>
