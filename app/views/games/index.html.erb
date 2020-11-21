@@ -20,9 +20,17 @@
                 </div>
               </div>
             </div>
+            <!-- タグ -->
+            <div class="tag-group">
+            <p>タグ一覧</p>
+              <% game.tag_list.each do |tag| %> <!-- gameブロック内のtag_listカラムからeachで、タグを配列から一つずつ取り出す -->
+                <span class="badge badge-primary mr-1 p-2"><%= tag %></span><!-- badgeはラベル -->
+              <% end %>
+            </div>
+            
             <!-- 星評価 -->
             <p>評価：<%= game.rate %>点</p>
-            <!--星評価-->
+            <!--星の数-->
             <div id="star-rate-<%= game.id %>"></div>
             <script>
             $('#star-rate-<%= game.id %>').raty({
