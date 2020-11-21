@@ -18,6 +18,12 @@
               <%= f.text_area :impressions, placeholder: "感想など", class: "form-control bg-transparent text-light", id: "impressions" %>
             </div>
             
+            <!-- タグ -->
+            <div class="form-group">
+              <%= f.text_field :tag_list, value: @game.tag_list.join(','), class: "form-control" %>
+              <!-- 初期値に、joinを設定することで区切り文字の , で区切って複数のタグを入力できる、game.rbにtagを追加したので親クラスのインスタンス@gameを指定しておく -->
+            </div>
+            
             <!-- 評価 -->
             <div class="form-group row" id="star">
               <%= f.label :rate,'評価 ', class:'col-md-3' %> <!-- col-form-label -->
