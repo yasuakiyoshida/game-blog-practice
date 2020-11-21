@@ -1,5 +1,10 @@
 class Game < ApplicationRecord
   
+  acts_as_taggable
+  # acts_as_taggable_on :tags と同じ意味のエイリアス
+  # tags のなかにIDやら名前などが入る。イメージ的には親情報。
+  # tags のカラムを追加
+  
   belongs_to :user
   attachment :image
   has_many :post_comments, dependent: :destroy

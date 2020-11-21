@@ -30,6 +30,6 @@ class GamesController < ApplicationController
   private
 
   def game_params
-    params.require(:game).permit(:game_title, :image, :impressions, :rate) # 星評価のrateカラム
+    params.require(:game).permit(:game_title, :image, :impressions, :rate, :tag_list) # 星評価のrateカラム, タグ機能のtag_list
   end
 end
