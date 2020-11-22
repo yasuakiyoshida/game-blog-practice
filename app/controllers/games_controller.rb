@@ -14,8 +14,8 @@ class GamesController < ApplicationController
   def index
     @games = Game.page(params[:page]).reverse_order # Kaminariのpageメソッドで決められた数のデータだけを取得する、.reverse_orderメソッド(現在のソート順を逆にする)で新着順に取得
     if params[:tag_name]
-      @game_tag = Game.tagged_with("#{params[:tag_name]}") # tagged_with("タグ名")メソッド受け取ったtag_nameに値が入っている場合、タグ名で絞り込みを行う
-      # @gemesにするとifが実行された際に値が更新されてしまうためインスタンス変数名変えとく
+      @games = Game.tagged_with("#{params[:tag_name]}").page(params[:page]).reverse_order # tagged_with("タグ名")メソッド受け取ったtag_nameに値が入っている場合、タグ名で絞り込みを行う
+      # タグ絞り込み＋page絞り込み
     end
   end
   

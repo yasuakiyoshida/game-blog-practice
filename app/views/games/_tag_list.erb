@@ -1,0 +1,8 @@
+<div class="tag-group">
+  <p>タグ一覧</p>
+  <% tag_list.each do |tag| %> <!-- gameブロック内のtag_listカラムからeachで、タグを配列から一つずつ取り出す -->
+    <span class="badge badge-primary mr-1 p-2"><!-- badgeはラベル -->
+      <%= link_to tag, games_path(tag_name: tag), class: "text-white" %><!-- タグを表示、tagのタグ名をパラメータとしてtag_nameメソッドで -->
+    </span>
+  <% end %>
+</div>
