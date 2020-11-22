@@ -20,7 +20,8 @@
             
             <!-- タグ -->
             <div class="form-group">
-              <%= f.text_field :tag_list, value: @game.tag_list.join(','), class: "form-control" %>
+              <%= f.text_field :tag_list, placeholder: "タグ（例：タグ1,タグ2,タグ3）", value: @game.tag_list.join(','), class: "form-control bg-transparent" %>
+              <p class="text-left">※","で区切ることでタグを複数指定可能</p>
               <!-- 初期値に、joinを設定することで区切り文字の , で区切って複数のタグを入力できる、game.rbにtagを追加したので親クラスのインスタンス@gameを指定しておく -->
             </div>
             
