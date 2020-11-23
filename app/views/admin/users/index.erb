@@ -1,0 +1,23 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <div class="row no-gutters">
+      <div class="profile-container card col-lg-10 m-auto">
+        <div class="card-header bg-dark text-center">
+          <h5 class="text-light">User Page</h5>
+        </div>
+        <% @users.each do |user| %>
+        <div class="card-body w-100 text-center">
+          <p>User image</p>
+          <div class="card-img-top">
+            <%= attachment_image_tag user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "100x100" %>
+          </div>
+          
+          <%= link_to user_path(user.id), style: "text-decoration: none;" do %>
+            <h6 class="card-title"><%= user.name %></h6>
+          <% end %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

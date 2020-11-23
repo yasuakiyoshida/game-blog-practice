@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   get 'users/show'
   
-  get "/admin" => "admin/posts#index" # 管理者画面のルーティング
-  namespace :admin do # namespace do〜endで、adminルーティングの配下にpostsルーティング設定
-    resources :posts
+  get "/admin" => "admin/users#index" # 管理者画面のルーティング
+  namespace :admin do # namespace do〜endで、adminルーティングの配下にusersルーティング設定
+    resources :users, only: [:index, :destroy]
   end
+
   
   devise_for :users
   root to: 'homes#top'
